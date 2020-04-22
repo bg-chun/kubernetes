@@ -61,3 +61,40 @@ func TestValueOfAllocatableResources(t *testing.T) {
 		}
 	}
 }
+
+func TestValueOfPreReservedMemoryZone(t *testing.T) {
+	testCases := []struct {
+		preReservedMemoryZone []map[string]string
+		errorExpected         bool
+		name                  string
+	}{
+		{
+			preReservedMemoryZone: []map[string]string{{"numa-node": "0", "memory-type": "memory", "limit": "1Gi"}, {"numa-node": "1", "memory-type": "memory", "limit": "1Gi"}},
+			errorExpected:         false,
+			name:                  "Valid resource quantity",
+		},
+		{
+			preReservedMemoryZone: []map[string]string{{"numa-node": "0", "memory-type": "memory", "limit": "1Gy"}, {"numa-node": "1", "memory-type": "memory", "limit": "1Gi"}},
+			errorExpected:         true,
+			name:                  "invalid quantity unit",
+		},
+		{
+			preReservedMemoryZone: []map[string]string{{"numa-node": "0", "memory-type": "memory", "limit": "-1Gi"}, {"numa-node": "1", "memory-type": "memory", "limit": "1Gi"}},
+			errorExpected:         true,
+			name:                  "negative quantity value",
+		},
+	}
+
+	for _, test := range testCases {
+		_, err := parsePreReservedMemoryConfig(test.preReservedMemoryZone)
+		if test.errorExpected {
+			if err == nil {
+				t.Errorf("%s: error expected", test.name)
+			}
+		} else {
+			if err != nil {
+				t.Errorf("%s: unexpected error: %v", test.name, err)
+			}
+		}
+	}
+}
