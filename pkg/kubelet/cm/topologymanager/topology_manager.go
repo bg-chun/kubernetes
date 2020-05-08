@@ -244,7 +244,7 @@ func (m *manager) RemoveContainer(containerID string) error {
 func (m *manager) reclaimAllResources(pod *v1.Pod) {
 	klog.Infof("[topologymanager] pod(%v) is reject, reclaim all resources for the pod.", pod.UID)
 
-    podUIDString := string(pod.UID)
+	podUIDString := string(pod.UID)
 
 	for _, container := range append(pod.Spec.InitContainers, pod.Spec.Containers...) {
 		for _, provider := range m.hintProviders {
@@ -312,12 +312,13 @@ func (m *manager) Admit(attrs *lifecycle.PodAdmitAttributes) lifecycle.PodAdmitR
 			}
 		}
 	} else {
+		podAdmission := true
 		// Loop NUMA nodes
 		for node := range m.numaNodes {
 
 			currentNumaAffinity, _ := bitmask.NewBitMask(node)
 
-			podAdmission := true
+			podAdmission = true
 
 			// Loop containers
 			for _, container := range append(pod.Spec.InitContainers, pod.Spec.Containers...) {
@@ -338,8 +339,8 @@ func (m *manager) Admit(attrs *lifecycle.PodAdmitAttributes) lifecycle.PodAdmitR
 
 				// run hint merging algorithm for container
 				bestHint, admit := m.policy.Merge(providersHints)
-				
-				if !admit || !bestHint.NUMANodeAffinity.IsEqual(currentNumaAffinity){
+
+				if !admit || !bestHint.NUMANodeAffinity.IsEqual(currentNumaAffinity) {
 					// revert resource allocation when container is not admittable
 					m.reclaimAllResources(pod)
 
@@ -367,60 +368,72 @@ func (m *manager) Admit(attrs *lifecycle.PodAdmitAttributes) lifecycle.PodAdmitR
 				}
 			}
 
-			
 			if podAdmission {
 				// pod is admitted on current NUMA node
 				return lifecycle.PodAdmitResult{Admit: true}
-			} 
-
-			// otherwise move to next numa node
-
-			//if this is last numa node but pod is not admitted, reject a pod
-			if (lastNode) {
-				return lifecycle.PodAdmitResult{
-						Message: fmt.Sprintf("Allocate failed due to %v, which is unexpected", err),
-						Reason:  "UnexpectedAdmissionError",
-						Admit:   false,
-				}
 			}
-			
+		}
+		//If a Pod is not admitted for all single numa, reject the pod.
+		if !podAdmission {
+			return lifecycle.PodAdmitResult{
+				Message: fmt.Sprintf("Allocate failed due to %v, which is unexpected", err),
+				Reason:  "UnexpectedAdmissionError",
+				Admit:   false,
+			}
 		}
 	}
 
 	return lifecycle.PodAdmitResult{Admit: true}
 }
 
+// providersHints : = []map{
+// map["res1"]TopologyHint{[{01, T}, {10, T}, {11, F}, ]},
+// map["res2"]TopologyHint{[{01, T}, {10, T}, {11, F}, ]},
+//
+// # just let them go
+// map["empty_map"]TopologyHint{}, //only struct
+// map["nil_slice"]TopologyHint{nil},
+// map["empty_slice"]TopologyHint{[/*slice is empty*/]},
+//
+// # make them empty slice not nill slice
+// map["res2"]TopologyHint{[{11, T}, ]}, =>empty_slice , since it is impossible to allocate resource on numa 01
+// map["res2"]TopologyHint{[{10, T}, ]}, => empty_slice
+// }
+//
+// filterdHints := [[{01/T, 10/T, 11/F }], [nil/T], [nil/F]]
+//
+// # no affinity((no preference)
+// empty map => TH{nil, true}
+// # no preference
+// map["res"]TopologyHint{nil} => TH(nil, true)
+// # no support(impossible)
+// map["res"]TopologyHint{[/*empty slice*/]} => TH(nil, false)
 func filterProvidersHintsForCurrentNumaNode(providersHints []map[string][]TopologyHint, currentAffinity bitmask.BitMask) []map[string][]TopologyHint {
-
-/*
-
-
-providersHints : = []map{
-map["res1"]TopologyHint{[{01, T}, {10, T}, {11, F}, ]},
-map["res2"]TopologyHint{[{01, T}, {10, T}, {11, F}, ]},
-
-just let them go
-map["empty_map"]TopologyHint{}, //only struct
-map["nil_slice"]TopologyHint{nil},
-map["empty_slice"]TopologyHint{[/*slice is empty*/]},
-
-
-//make them empty slice not nill slice
-//map["res2"]TopologyHint{[{11, T}, ]}, =>empty_slice , since it is impossible to allocate resource on numa 01
-//map["res2"]TopologyHint{[{10, T}, ]}, => empty_slice
-//}
-  
-//filterdHints := [[{01/T, 10/T, 11/F }], [nil/T], [nil/F]]
-
-
-//no affinity((no preference)
-//empty map => TH{nil, true}
-
-//no preference
-//map["res"]TopologyHint{nil} => TH(nil, true)
-
-//no support(impossible)
-//map["res"]TopologyHint{[/*empty slice*/]} => TH(nil, false)
-
-	return nil
+	// set empty slice of map here
+	filteredProvidersHints := []map[string][]TopologyHint{}
+	for _, topologyHints := range providersHints {
+		if len(topologyHints) == 0 {
+			filteredProvidersHints = append(filteredProvidersHints, topologyHints)
+			continue
+		}
+		// Otherwise
+		providerHints := make(map[string][]TopologyHint)
+		for element := range topologyHints {
+			if topologyHints[element] == nil {
+				providerHints[element] = topologyHints[element]
+				continue
+			}
+			if len(topologyHints[element]) == 0 {
+				providerHints[element] = topologyHints[element]
+				continue
+			}
+			// need condition
+			if !topologyHints[element].NUMANodeAffinity.IsEqual(currentAffinity) {
+				continue
+			}
+			providerHints[element] = topologyHints[element]
+		}
+		filteredProvidersHints = append(filteredProvidersHints, providerHints)
+	}
+	return filteredProvidersHints
 }
