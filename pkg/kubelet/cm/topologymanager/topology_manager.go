@@ -411,27 +411,24 @@ func (m *manager) Admit(attrs *lifecycle.PodAdmitAttributes) lifecycle.PodAdmitR
 func filterProvidersHintsForCurrentNumaNode(providersHints []map[string][]TopologyHint, currentAffinity bitmask.BitMask) []map[string][]TopologyHint {
 	// set empty slice of map here
 	filteredProvidersHints := []map[string][]TopologyHint{}
-	for _, topologyHints := range providersHints {
-		if len(topologyHints) == 0 {
-			filteredProvidersHints = append(filteredProvidersHints, topologyHints)
+	for _, hints := range providersHints {
+		if len(hints) == 0 {
+			filteredProvidersHints = append(filteredProvidersHints, hints)
 			continue
 		}
 		// Otherwise
 		providerHints := make(map[string][]TopologyHint)
-		for element := range topologyHints {
-			if topologyHints[element] == nil {
-				providerHints[element] = topologyHints[element]
+		for resource := range hints {
+			if hints[resource] == nil || len(hints[resource]) == 0 {
+				providerHints[resource] = hints[resource]
 				continue
 			}
-			if len(topologyHints[element]) == 0 {
-				providerHints[element] = topologyHints[element]
-				continue
+			for _, element := range hints[resource] {
+				if !element.NUMANodeAffinity.IsEqual(currentAffinity) {
+					continue
+				}
+				providerHints[resource] = element
 			}
-			// need condition
-			if !topologyHints[element].NUMANodeAffinity.IsEqual(currentAffinity) {
-				continue
-			}
-			providerHints[element] = topologyHints[element]
 		}
 		filteredProvidersHints = append(filteredProvidersHints, providerHints)
 	}
