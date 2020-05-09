@@ -17,6 +17,7 @@ limitations under the License.
 package topologymanager
 
 import (
+	"k8s.io/klog"
 	"k8s.io/kubernetes/pkg/kubelet/cm/topologymanager/bitmask"
 )
 
@@ -32,11 +33,12 @@ const PolicyPodLevelSingleNumaNode string = "pod-level-single-numa-node"
 
 // NewPodLevelSingleNumaNodePolicy returns pod-level-single-numa-node policy.
 func NewPodLevelSingleNumaNodePolicy(numaNodes []int) Policy {
+	klog.Infof("pod level single numa policy is created")
 	return &podLevelSingleNumaNodePolicy{numaNodes: numaNodes}
 }
 
 func (p *podLevelSingleNumaNodePolicy) Name() string {
-	return PolicySingleNumaNode
+	return PolicyPodLevelSingleNumaNode
 }
 
 func (p *podLevelSingleNumaNodePolicy) canAdmitPodResult(hint *TopologyHint) bool {
@@ -44,6 +46,7 @@ func (p *podLevelSingleNumaNodePolicy) canAdmitPodResult(hint *TopologyHint) boo
 }
 
 func (p *podLevelSingleNumaNodePolicy) Merge(providersHints []map[string][]TopologyHint) (TopologyHint, bool) {
+	klog.Infof("[topologymanager] bgchun podLevelSingleNumaNodePolicy.Merge is called providersHints: %v", providersHints)
 	filteredHints := filterProvidersHints(providersHints)
 
 	//[[{01/T, 10/T, 11/F }], [nil/T], [nil/F]]
@@ -52,10 +55,13 @@ func (p *podLevelSingleNumaNodePolicy) Merge(providersHints []map[string][]Topol
 	//singleNumaHints := filterSingleNumaHints(filteredHints)
 
 	bestHint := mergeFilteredHints(p.numaNodes, filteredHints)
+	klog.Infof("[topologymanager] bgchun bestHint is %v", bestHint)
 
 	defaultAffinity, _ := bitmask.NewBitMask(p.numaNodes...)
+	klog.Infof("[topologymanager] bgchun defaultAffinity: %v", defaultAffinity)
 	if bestHint.NUMANodeAffinity.IsEqual(defaultAffinity) {
 		bestHint = TopologyHint{nil, bestHint.Preferred}
+		klog.Infof("[topologymanager] bgchun bestHint is replaced to %v", bestHint)
 	}
 
 	admit := p.canAdmitPodResult(&bestHint)
