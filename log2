@@ -1,0 +1,114 @@
+ 5월 09 06:01:53 localhost.localdomain kubelet[52124]: I0509 06:01:53.917229   52124 policy_pod_level_single_numa_node.go:49] [topologymanager] bgchun podLevelSingleNumaNodePolicy.Merge is called providersHints: [map[] map[]]
+ 5월 09 06:01:53 localhost.localdomain kubelet[52124]: I0509 06:01:53.917268   52124 policy_pod_level_single_numa_node.go:58] [topologymanager] bgchun bestHint is {11 true}
+ 5월 09 06:01:53 localhost.localdomain kubelet[52124]: I0509 06:01:53.917284   52124 policy_pod_level_single_numa_node.go:61] [topologymanager] bgchun defaultAffinity: 11
+ 5월 09 06:01:53 localhost.localdomain kubelet[52124]: I0509 06:01:53.917298   52124 policy_pod_level_single_numa_node.go:64] [topologymanager] bgchun bestHint is replaced to {<nil> true}
+ 5월 09 06:01:53 localhost.localdomain kubelet[52124]: I0509 06:01:53.917313   52124 topology_manager.go:333] [topologymanager] bgchun container calico-node is admitted
+ 5월 09 06:01:53 localhost.localdomain kubelet[52124]: I0509 06:01:53.917345   52124 topology_manager.go:343] [topologymanager] bgchun Allocated resources for container calico-node
+ 5월 09 06:01:53 localhost.localdomain kubelet[52124]: I0509 06:01:53.920985   52124 topology_manager.go:356] [topologymanager] bgchun pod 228e32d6-4c03-48cd-a651-f7d95e55897f is admitted
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.003147   52124 topology_manager.go:274] [topologymanager] bgchun entered runPodBasisAdmitLogic for pod 047d13a7-28e1-4fd9-a1b1-d5c10489c595
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.003162   52124 topology_manager.go:275] [topologymanager] bgchun numanodes: [0 1]
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.003178   52124 topology_manager.go:278] [topologymanager] bgchun currentNumaAffinity: 01
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.003199   52124 topology_manager.go:282] [topologymanager] bgchun start roop through container
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.003218   52124 topology_manager.go:295] [topologymanager] bgchun get hint from providers for container : nvidia-device-plugin-ctr, {nvidia-device-plugin-ctr nvidia/k8s-device-plugin:1.0.0-beta6 [] []  [] [] [] {map[] map[]} [{device-plugin false /var/lib/kubelet/device-plugins  <nil> } {default-token-qn89j true /var/run/secrets/kubernetes.io/serviceaccount  <nil> }] [] nil nil nil nil /dev/termination-log File IfNotPresent &SecurityContext{Capabilities:&Capabilities{Add:[],Drop:[ALL],},Privileged:nil,SELinuxOptions:nil,RunAsUser:nil,RunAsNonRoot:nil,ReadOnlyRootFilesystem:nil,AllowPrivilegeEscalation:*false,RunAsGroup:nil,ProcMount:nil,WindowsOptions:nil,} false false false}
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.003367   52124 topology_manager.go:303] [topologymanager] bgchun provider hints is [map[] map[]]
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.003385   52124 topology_manager.go:316] [topologymanager] bgchun filtered hint by numa affinity 01 is [map[] map[]]
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.003403   52124 policy_pod_level_single_numa_node.go:49] [topologymanager] bgchun podLevelSingleNumaNodePolicy.Merge is called providersHints: [map[] map[]]
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.003444   52124 policy_pod_level_single_numa_node.go:58] [topologymanager] bgchun bestHint is {11 true}
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.003460   52124 policy_pod_level_single_numa_node.go:61] [topologymanager] bgchun defaultAffinity: 11
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.003474   52124 policy_pod_level_single_numa_node.go:64] [topologymanager] bgchun bestHint is replaced to {<nil> true}
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.003489   52124 topology_manager.go:333] [topologymanager] bgchun container nvidia-device-plugin-ctr is admitted
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.003528   52124 topology_manager.go:343] [topologymanager] bgchun Allocated resources for container nvidia-device-plugin-ctr
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.007510   52124 topology_manager.go:356] [topologymanager] bgchun pod 047d13a7-28e1-4fd9-a1b1-d5c10489c595 is admitted
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.093578   52124 topology_manager.go:274] [topologymanager] bgchun entered runPodBasisAdmitLogic for pod 505db5c3-9661-4b90-9d33-741a0aa253bf
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.093591   52124 topology_manager.go:275] [topologymanager] bgchun numanodes: [0 1]
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.093610   52124 topology_manager.go:278] [topologymanager] bgchun currentNumaAffinity: 01
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.093634   52124 topology_manager.go:282] [topologymanager] bgchun start roop through container
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.093660   52124 topology_manager.go:295] [topologymanager] bgchun get hint from providers for container : ubuntu1, {ubuntu1 ubuntu [/bin/bash -ec while :; do echo '.'; sleep 5 ; done] []  [] [] [] {map[cpu:{{4 0} {<nil>} 4 DecimalSI} memory:{{104857600 0} {<nil>} 100Mi BinarySI} nvidia.com/gpu:{{1 0} {<nil>} 1 DecimalSI}] map[cpu:{{4 0} {<nil>} 4 DecimalSI} memory:{{104857600 0} {<nil>} 100Mi BinarySI} nvidia.com/gpu:{{1 0} {<nil>} 1 DecimalSI}]} [{default-token-ppglj true /var/run/secrets/kubernetes.io/serviceaccount  <nil> }] [] nil nil nil nil /dev/termination-log File Always nil false false false}
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.093840   52124 topology_manager.go:300] [topologymanager] TopologyHints for pod 'ubuntu-test-pod-bgchun', container 'ubuntu1': map[nvidia.com/gpu:[]]
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.094122   52124 topology_manager.go:300] [topologymanager] TopologyHints for pod 'ubuntu-test-pod-bgchun', container 'ubuntu1': map[cpu:[{01 true} {11 false}]]
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.094152   52124 topology_manager.go:303] [topologymanager] bgchun provider hints is [map[nvidia.com/gpu:[]] map[cpu:[{01 true} {11 false}]]]
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.094183   52124 topology_manager.go:316] [topologymanager] bgchun filtered hint by numa affinity 01 is [map[nvidia.com/gpu:[]] map[cpu:[{01 true}]]]
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.094206   52124 policy_pod_level_single_numa_node.go:49] [topologymanager] bgchun podLevelSingleNumaNodePolicy.Merge is called providersHints: [map[nvidia.com/gpu:[]] map[cpu:[{01 true}]]]
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.094247   52124 policy_pod_level_single_numa_node.go:58] [topologymanager] bgchun bestHint is {01 true}
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.094261   52124 policy_pod_level_single_numa_node.go:61] [topologymanager] bgchun defaultAffinity: 11
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.094277   52124 topology_manager.go:333] [topologymanager] bgchun container ubuntu1 is admitted
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.094313   52124 topology_manager.go:343] [topologymanager] bgchun Allocated resources for container ubuntu1
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.098323   52124 topology_manager.go:295] [topologymanager] bgchun get hint from providers for container : ubuntu2, {ubuntu2 ubuntu [/bin/bash -ec while :; do echo '.'; sleep 5 ; done] []  [] [] [] {map[cpu:{{4 0} {<nil>} 4 DecimalSI} memory:{{104857600 0} {<nil>} 100Mi BinarySI}] map[cpu:{{4 0} {<nil>} 4 DecimalSI} memory:{{104857600 0} {<nil>} 100Mi BinarySI}]} [{default-token-ppglj true /var/run/secrets/kubernetes.io/serviceaccount  <nil> }] [] nil nil nil nil /dev/termination-log File Always nil false false false}
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.098431   52124 topology_manager.go:300] [topologymanager] TopologyHints for pod 'ubuntu-test-pod-bgchun', container 'ubuntu2': map[]
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.098656   52124 topology_manager.go:300] [topologymanager] TopologyHints for pod 'ubuntu-test-pod-bgchun', container 'ubuntu2': map[cpu:[{01 true} {11 false}]]
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.098688   52124 topology_manager.go:303] [topologymanager] bgchun provider hints is [map[] map[cpu:[{01 true} {11 false}]]]
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.098716   52124 topology_manager.go:316] [topologymanager] bgchun filtered hint by numa affinity 01 is [map[] map[cpu:[{01 true}]]]
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.098759   52124 policy_pod_level_single_numa_node.go:49] [topologymanager] bgchun podLevelSingleNumaNodePolicy.Merge is called providersHints: [map[] map[cpu:[{01 true}]]]
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.098797   52124 policy_pod_level_single_numa_node.go:58] [topologymanager] bgchun bestHint is {01 true}
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.098812   52124 policy_pod_level_single_numa_node.go:61] [topologymanager] bgchun defaultAffinity: 11
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.098827   52124 topology_manager.go:333] [topologymanager] bgchun container ubuntu2 is admitted
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.098861   52124 topology_manager.go:343] [topologymanager] bgchun Allocated resources for container ubuntu2
+ 5월 09 06:01:54 localhost.localdomain kubelet[52124]: I0509 06:01:54.102700   52124 topology_manager.go:356] [topologymanager] bgchun pod 505db5c3-9661-4b90-9d33-741a0aa253bf is admitted
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.926926   52124 topology_manager.go:274] [topologymanager] bgchun entered runPodBasisAdmitLogic for pod 930996c8-49b1-46b8-9185-157b68e4deb6
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.926939   52124 topology_manager.go:275] [topologymanager] bgchun numanodes: [0 1]
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.926956   52124 topology_manager.go:278] [topologymanager] bgchun currentNumaAffinity: 01
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.926985   52124 topology_manager.go:282] [topologymanager] bgchun start roop through container
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.927006   52124 topology_manager.go:295] [topologymanager] bgchun get hint from providers for container : ubuntu1, {ubuntu1 ubuntu [/bin/bash -ec while :; do echo '.'; sleep 5 ; done] []  [] [] [] {map[cpu:{{4 0} {<nil>} 4 DecimalSI} memory:{{104857600 0} {<nil>} 100Mi BinarySI} nvidia.com/gpu:{{1 0} {<nil>} 1 DecimalSI}] map[cpu:{{4 0} {<nil>} 4 DecimalSI} memory:{{104857600 0} {<nil>} 100Mi BinarySI} nvidia.com/gpu:{{1 0} {<nil>} 1 DecimalSI}]} [{default-token-ppglj true /var/run/secrets/kubernetes.io/serviceaccount  <nil> }] [] nil nil nil nil /dev/termination-log File Always nil false false false}
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.927193   52124 topology_manager.go:300] [topologymanager] TopologyHints for pod 'ubuntu-test-pod-bgchun', container 'ubuntu1': map[nvidia.com/gpu:[{10 true} {11 false}]]
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.927658   52124 topology_manager.go:300] [topologymanager] TopologyHints for pod 'ubuntu-test-pod-bgchun', container 'ubuntu1': map[cpu:[{01 true} {10 true} {11 false}]]
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.927685   52124 topology_manager.go:303] [topologymanager] bgchun provider hints is 
+
+[map[nvidia.com/gpu:[{10 true} {11 false}]] map[cpu:[{01 true} {10 true} {11 false}]]]
+
+
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.927739   52124 topology_manager.go:316] [topologymanager] bgchun filtered hint by numa affinity 01 is 
+
+[map[nvidia.com/gpu:[]] map[cpu:[{01 true}]]]
+
+
+
+
+deploy two conntainer resource is available on only second numa node
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.927763   52124 policy_pod_level_single_numa_node.go:49] [topologymanager] bgchun podLevelSingleNumaNodePolicy.Merge is called providersHints: [map[nvidia.com/gpu:[]] map[cpu:[{01 true}]]]
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.927803   52124 policy_pod_level_single_numa_node.go:58] [topologymanager] bgchun bestHint is {01 false}
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.927817   52124 policy_pod_level_single_numa_node.go:61] [topologymanager] bgchun defaultAffinity: 11
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.927835   52124 topology_manager.go:325] [topologymanager] bgchun container ubuntu1 is not admitted
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.927846   52124 topology_manager.go:246] [topologymanager] bgchun  pod(930996c8-49b1-46b8-9185-157b68e4deb6) is reject, reclaim all resources for the pod.
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.927902   52124 topology_manager.go:278] [topologymanager] bgchun currentNumaAffinity: 10
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.927915   52124 topology_manager.go:282] [topologymanager] bgchun start roop through container
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.927931   52124 topology_manager.go:295] [topologymanager] bgchun get hint from providers for container : ubuntu1, {ubuntu1 ubuntu [/bin/bash -ec while :; do echo '.'; sleep 5 ; done] []  [] [] [] {map[cpu:{{4 0} {<nil>} 4 DecimalSI} memory:{{104857600 0} {<nil>} 100Mi BinarySI} nvidia.com/gpu:{{1 0} {<nil>} 1 DecimalSI}] map[cpu:{{4 0} {<nil>} 4 DecimalSI} memory:{{104857600 0} {<nil>} 100Mi BinarySI} nvidia.com/gpu:{{1 0} {<nil>} 1 DecimalSI}]} [{default-token-ppglj true /var/run/secrets/kubernetes.io/serviceaccount  <nil> }] [] nil nil nil nil /dev/termination-log File Always nil false false false}
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.928017   52124 topology_manager.go:300] [topologymanager] TopologyHints for pod 'ubuntu-test-pod-bgchun', container 'ubuntu1': map[nvidia.com/gpu:[{10 true} {11 false}]]
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.928460   52124 topology_manager.go:300] [topologymanager] TopologyHints for pod 'ubuntu-test-pod-bgchun', container 'ubuntu1': map[cpu:[{01 true} {10 true} {11 false}]]
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.928484   52124 topology_manager.go:303] [topologymanager] bgchun provider hints is 
+
+[map[nvidia.com/gpu:[{10 true} {11 false}]] map[cpu:[{01 true} {10 true} {11 false}]]]
+
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.928521   52124 topology_manager.go:316] [topologymanager] bgchun filtered hint by numa affinity 10 is 
+
+[map[nvidia.com/gpu:[{10 true}]] map[cpu:[{10 true}]]]
+
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.928544   52124 policy_pod_level_single_numa_node.go:49] [topologymanager] bgchun podLevelSingleNumaNodePolicy.Merge is called providersHints: [map[nvidia.com/gpu:[{10 true}]] map[cpu:[{10 true}]]]
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.928570   52124 policy_pod_level_single_numa_node.go:58] [topologymanager] bgchun bestHint is {10 true}
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.928584   52124 policy_pod_level_single_numa_node.go:61] [topologymanager] bgchun defaultAffinity: 11
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.928599   52124 topology_manager.go:333] [topologymanager] bgchun container ubuntu1 is admitted
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.928634   52124 topology_manager.go:343] [topologymanager] bgchun Allocated resources for container ubuntu1
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.942595   52124 topology_manager.go:295] [topologymanager] bgchun get hint from providers for container : ubuntu2, {ubuntu2 ubuntu [/bin/bash -ec while :; do echo '.'; sleep 5 ; done] []  [] [] [] {map[cpu:{{4 0} {<nil>} 4 DecimalSI} memory:{{104857600 0} {<nil>} 100Mi BinarySI}] map[cpu:{{4 0} {<nil>} 4 DecimalSI} memory:{{104857600 0} {<nil>} 100Mi BinarySI}]} [{default-token-ppglj true /var/run/secrets/kubernetes.io/serviceaccount  <nil> }] [] nil nil nil nil /dev/termination-log File Always nil false false false}
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.942715   52124 topology_manager.go:300] [topologymanager] TopologyHints for pod 'ubuntu-test-pod-bgchun', container 'ubuntu2': map[]
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.943183   52124 topology_manager.go:300] [topologymanager] TopologyHints for pod 'ubuntu-test-pod-bgchun', container 'ubuntu2': map[cpu:[{01 true} {10 true} {11 false}]]
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.943211   52124 topology_manager.go:303] [topologymanager] bgchun provider hints is [map[] map[cpu:[{01 true} {10 true} {11 false}]]]
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.943240   52124 topology_manager.go:316] [topologymanager] bgchun filtered hint by numa affinity 10 is [map[] map[cpu:[{10 true}]]]
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.943261   52124 policy_pod_level_single_numa_node.go:49] [topologymanager] bgchun podLevelSingleNumaNodePolicy.Merge is called providersHints: [map[] map[cpu:[{10 true}]]]
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.943295   52124 policy_pod_level_single_numa_node.go:58] [topologymanager] bgchun bestHint is {10 true}
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.943309   52124 policy_pod_level_single_numa_node.go:61] [topologymanager] bgchun defaultAffinity: 11
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.943324   52124 topology_manager.go:333] [topologymanager] bgchun container ubuntu2 is admitted
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.943359   52124 topology_manager.go:343] [topologymanager] bgchun Allocated resources for container ubuntu2
+ 5월 09 06:03:26 localhost.localdomain kubelet[52124]: I0509 06:03:26.955214   52124 topology_manager.go:356] [topologymanager] bgchun pod 930996c8-49b1-46b8-9185-157b68e4deb6 is admitted
+

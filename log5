@@ -1,0 +1,30 @@
+
+4e314f7edc1e14c4e6f808b5547ef5fc7e383d35
+f6e78dd773b554351fd91e201dc5eb3967be701f
+6ea6c5a937aa0aeecf94a50f5091a15ba6646ebc
+ceea1c97a600e89b2150160dac463ed25ef13181
+8a3438eafa550bd8b782b6a16fb235ed46618ddc
+8dc3eea9d610776e08c78e861faeeee44f8f2615
+
+DeAllocate2 a9de1fa6300efdbb748fbb1e41ee5a70c7a9f538
+DeAllocate1 75f4f25843f35a78a3d2502f449bc5cffde526df
+
+
+
+single-container-no-affinity
+expected: admit
+single-container-single-numa-affinity
+expected: admit
+single-container-cross-numa-affinity
+expected: reject
+multi-container-no-affinity
+expected => admit
+multi-container-single-numa-affinity
+expected => admit
+multi-container-cross-numa-affinity
+expected => reject
+single-container-no-de-allocate
+expected => admit
+multi-container-trigger-de-allocate
+expected => admit
+
