@@ -47,7 +47,7 @@ func (p *podLevelSingleNumaNodePolicy) Merge(providersHints []map[string][]Topol
 	filteredHints := filterProvidersHints(providersHints)
 
 	// hits are already filtered by filterProvidersHintsForCurrentNumaNode
-        // so we can skip this
+	// so we can skip this
 	//singleNumaHints := filterSingleNumaHints(filteredHints)
 
 	bestHint := mergeFilteredHints(p.numaNodes, filteredHints)

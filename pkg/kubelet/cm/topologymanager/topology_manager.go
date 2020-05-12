@@ -153,10 +153,7 @@ func NewManager(numaNodeInfo cputopology.NUMANodeInfo, topologyPolicyName string
 		policy = NewRestrictedPolicy(numaNodes)
 
 	case PolicySingleNumaNode:
-		//this is to test the new policy with 'single-numa-node' policy flag
-		//new flag will be added
-		policy = NewPodLevelSingleNumaNodePolicy(numaNodes)
-		//policy = NewSingleNumaNodePolicy(numaNodes)
+		policy = NewSingleNumaNodePolicy(numaNodes)
 
 	case PolicyPodLevelSingleNumaNode:
 		policy = NewPodLevelSingleNumaNodePolicy(numaNodes)
@@ -349,10 +346,10 @@ func (m *manager) runPodBasisAdmitLogic(pod *v1.Pod) lifecycle.PodAdmitResult {
 
 	//If a Pod is not admitted on any numa node, reject the pod.
 	return lifecycle.PodAdmitResult{
-			Message: fmt.Sprintf("Resources cannot be allocated with Topology locality"),
-			Reason:  "TopologyAffinityError",
-			Admit:   false,
-		}
+		Message: fmt.Sprintf("Resources cannot be allocated with Topology locality"),
+		Reason:  "TopologyAffinityError",
+		Admit:   false,
+	}
 }
 
 func (m *manager) Admit(attrs *lifecycle.PodAdmitAttributes) lifecycle.PodAdmitResult {
