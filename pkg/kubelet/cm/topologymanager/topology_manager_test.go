@@ -818,3 +818,89 @@ func makeSimplePodWithMultipleContainers(podName, podUID string, containerNames 
 
 	return pod
 }
+
+type mockHintProviderV2 struct {
+    // this will be used for key of map[string][]TopologyHint
+	resourceName string
+
+	// map[numa_node_idx]num_of_res
+	topology     map[int]int
+
+	// num of numa node
+	numOfNumaNode int
+
+	// total number of resources
+	numOfAvailableRes int
+
+	availableRes map[int]int
+
+	allocatedRes map[int]int
+
+	topologyAffinityStore Store
+
+
+}
+func newMockHintProviderV2(resourceName string, topology map[int]int, numOfNumaNode, numOfResource int, topologyAffinityStore Store) mockHintProviderV2 {
+	mock := mockHintProviderV2{
+		resourceName: resourceName,
+		topology:     topology,
+		numOfNumaNode: numOfNumaNode,
+		numOfAvailableRes: numOfResource,
+		topologyAffinityStore: topologyAffinityStore,
+	}
+
+	mock.availableRes = topology
+	mock.allocatedRes = make(map[int]int)
+
+	return mock
+}
+
+func (m *mockHintProviderV2) GetTopologyHints(pod *v1.Pod, container *v1.Container) map[string][]TopologyHint {
+	hintMap := map[string][]TopologyHint{}
+
+	// no hint is provided
+		// return nil or map[string][]TopologyHint{}
+	// no preference(when calculated hint is equal to default hint)
+		// return map[string][]TopologyHint{ m.resourceName : nil}
+	// resource allocation is impossible
+		// return map[string][]TopologyHint{ m.resourceName : []TopologyHint{}}
+
+	// generate hints when container requests proper resource
+	// for simple impl it take a look only Limits
+	for k, v := range container.Resources.Limits {
+		resource := string(k)
+		requested := int(v.Value())
+		if strings.Compare(m.resourceName, resource) != 0 {
+			continue
+		}
+
+		// check available resources 
+		if (requested > m.numOfAvailableRes) {
+			// resource allocation is impossible
+			return map[string][]TopologyHint{ m.resourceName : []TopologyHint{/*empty*/}}
+		}
+
+		//genereate hint here
+		//make simplified version of func (m *ManagerImpl) generateDeviceTopologyHints(resource string, devices sets.String, request int) []topologymanager.TopologyHint {
+
+
+
+
+	}
+
+	return hintMap
+}
+
+func (m *mockHintProviderV2) Allocate(pod *v1.Pod, container *v1.Container) error {
+	//return allocateError
+	//hint := m.topologyAffinityStore.GetAffinity(string(pod.UID), container.Name)
+
+
+	//make simplified version of func (m *ManagerImpl) takeByTopology(resource string, available sets.String, affinity bitmask.BitMask, request int) []string {
+	return nil
+}
+
+func (m *mockHintProviderV2) DeAllocate(pod *v1.Pod, container *v1.Container) error {
+	//return DeAllocateError
+	return nil
+}
